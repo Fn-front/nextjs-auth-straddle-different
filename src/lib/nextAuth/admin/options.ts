@@ -1,4 +1,5 @@
 import type { NextAuthOptions } from 'next-auth';
+import { getProviders } from 'next-auth/react';
 import bcrypt from 'bcrypt';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { userCertification } from '@/hooks/login';
@@ -29,14 +30,14 @@ const options: NextAuthOptions = {
         const user = await userCertification(credentials?.email);
 
         // ユーザーかパスワードがない場合にエラーを返す
-        if (!user || !user.password) {
+        if (!user.data || !user.data.password) {
           throw new Error('メールアドレスが一致しません');
         }
 
         // パスワードのハッシュをデコードし確認
         const isCorrectPassword = await bcrypt.compare(
           credentials.password,
-          user.password,
+          user.data.password,
         );
 
         // パスワードが一致しない場合はエラーを返す
@@ -49,13 +50,10 @@ const options: NextAuthOptions = {
     }),
   ],
   debug: process.env.NODE_ENV === 'development',
+  secret: process.env.NEXTAUTH_SECRET_ADMIN,
   // adapter: PrismaAdapter(prisma),
   session: {
     strategy: 'jwt',
-    // クッキーの有効期限（秒）例: 7日間
-    // maxAge: 7 * 24 * 60 * 60,
-    // クッキーの更新頻度（秒）例: 1日
-    // updateAge: 24 * 60 * 60,
   },
   cookies: {
     sessionToken: {
@@ -68,8 +66,10 @@ const options: NextAuthOptions = {
       },
     },
   },
-  secret: process.env.NEXTAUTH_SECRET_ADMIN,
-  callbacks: {},
+  pages: {
+    signIn: '/admin/login',
+    error: '/admin/error',
+  },
 };
 
 export default options;
