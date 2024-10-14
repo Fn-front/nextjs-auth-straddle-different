@@ -1,6 +1,6 @@
 export const userCertification = async (data: { email: string }) => {
   const { email } = data;
-  const res = await fetch('http://localhost:3000/api/certification', {
+  const res = await fetch(process.env.NEXT_PUBLIC_URL + 'api/certification', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
