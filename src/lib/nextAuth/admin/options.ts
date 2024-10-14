@@ -9,6 +9,10 @@ const options: NextAuthOptions = {
   // adapter: PrismaAdapter(prisma),
   session: {
     strategy: 'jwt',
+    // クッキーの有効期限（秒）例: 7日間
+    // maxAge: 7 * 24 * 60 * 60,
+    // クッキーの更新頻度（秒）例: 1日
+    // updateAge: 24 * 60 * 60,
   },
   cookies: {
     sessionToken: {
@@ -21,7 +25,7 @@ const options: NextAuthOptions = {
       },
     },
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET_ADMIN,
   callbacks: {},
 };
 
