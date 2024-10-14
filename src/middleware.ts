@@ -6,8 +6,16 @@ import { getToken } from 'next-auth/jwt';
 export async function middleware(req: any) {
   const { pathname } = req.nextUrl;
 
-  // ログインページ自体ではリダイレクトを行わないようにする
-  if (pathname === '/admin/login') {
+  // ログイン関係ではリダイレクトを行わないようにする
+  if (
+    pathname === '/admin/login' ||
+    pathname === '/admin/api/auth/' ||
+    pathname === '/admin/api/auth/callback/credentials' ||
+    pathname === '/admin/api/auth/providers' ||
+    pathname === '/admin/api/auth/csrf' ||
+    pathname === '/api/auth/_log' ||
+    pathname === '/admin/api/auth/session'
+  ) {
     return NextResponse.next();
   }
 
@@ -16,6 +24,7 @@ export async function middleware(req: any) {
     const token = await getToken({
       req,
       secret: process.env.NEXTAUTH_SECRET_ADMIN,
+      cookieName: 'admin-session-token',
     });
 
     // tokenが無い場合にリダイレクト
@@ -27,6 +36,6 @@ export async function middleware(req: any) {
   return NextResponse.next();
 }
 
-export const config = {
-  matcher: ['/admin/:path*'],
-};
+// export const config = {
+//   matcher: ['/admin/:path*'],
+// };
