@@ -1,5 +1,4 @@
-export const userCertification = async (data: { email: string }) => {
-  const { email } = data;
+export const userCertification = async (email: string) => {
   const res = await fetch(process.env.NEXT_PUBLIC_URL + 'api/certification', {
     method: 'POST',
     headers: {
