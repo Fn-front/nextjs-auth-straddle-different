@@ -15,6 +15,7 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@prisma/client": "^5.20.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -26,6 +27,7 @@
     "eslint-plugin-react": "^7.37.1",
     "next-auth": "^4.24.8",
     "prettier": "^3.3.3",
+    "prisma": "^5.20.0",
     "sass": "^1.77.6",
     "typescript": "^5"
   }
