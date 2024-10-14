@@ -1,5 +1,4 @@
 import type { NextAuthOptions } from 'next-auth';
-import { getProviders } from 'next-auth/react';
 import bcrypt from 'bcrypt';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { userCertification } from '@/hooks/login';
