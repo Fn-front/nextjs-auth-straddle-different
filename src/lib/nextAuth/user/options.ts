@@ -49,7 +49,7 @@ const options: NextAuthOptions = {
     }),
   ],
   debug: process.env.NODE_ENV === 'development',
-  secret: process.env.NEXTAUTH_SECRET_ADMIN,
+  secret: process.env.NEXTAUTH_SECRET_USER,
   // adapter: PrismaAdapter(prisma),
   session: {
     strategy: 'jwt',
@@ -67,8 +67,8 @@ const options: NextAuthOptions = {
     },
   },
   pages: {
-    signIn: '/admin/login',
-    error: '/admin/error',
+    signIn: '/user/login',
+    error: '/user/error',
   },
 };
 
