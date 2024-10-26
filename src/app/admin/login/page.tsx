@@ -22,8 +22,8 @@ export default function AdminLogin() {
 
     await signIn('credentials', {
       redirect: false,
-      email: 'admin@gmail.com',
-      password: 'vBa7jh9Nbgmg',
+      email: email,
+      password: pass,
     })
       .then((res: any) => {
 
