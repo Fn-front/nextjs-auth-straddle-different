@@ -46,6 +46,7 @@ export default function AdminLogin() {
         label="email"
         variant="outlined"
         sx={{ input: { color: '#fff', width: '200px', fontSize: '1.5rem' }, fieldset: { borderColor: '#fff' }, label: { color: '#fff', fontSize: '1.5rem' } }}
+        defaultValue={email}
         onChange={(e) => setEmail(e.target.value)}
       />
       <br />
@@ -54,6 +55,7 @@ export default function AdminLogin() {
         label="password"
         variant="outlined"
         sx={{ input: { color: '#fff', width: '200px', fontSize: '1.5rem' }, fieldset: { borderColor: '#fff' }, label: { color: '#fff', fontSize: '1.5rem' }, marginTop: '16px' }}
+        defaultValue={pass}
         onChange={(e) => setPass(e.target.value)}
       />
       <br />
