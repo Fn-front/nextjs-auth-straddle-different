@@ -10,8 +10,8 @@ const noto = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: 'テンプレ',
-  description: 'テンプレ',
+  title: 'ディレクトリ別ログイン認証',
+  description: 'ディレクトリ別ログイン認証',
 };
 
 export default function RootLayout({
