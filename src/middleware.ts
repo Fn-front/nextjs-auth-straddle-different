@@ -6,9 +6,6 @@ import { getToken } from 'next-auth/jwt';
 export async function middleware(req: any) {
   const { pathname } = req.nextUrl;
 
-  console.log(pathname);
-  // console.log(!!pathname.match('/user/api/'));
-
   // ログイン関係ではリダイレクトを行わないようにする
   if (
     pathname === '/admin/login' ||
