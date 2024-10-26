@@ -1,7 +1,7 @@
 'use client'
 
 import { signIn } from 'next-auth/react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -11,8 +11,8 @@ export default function AdminLogin() {
 
   const router = useRouter();
   // パラメータ情報取得
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') || '/';
+  // const searchParams = useSearchParams();
+  // const callbackUrl = searchParams.get('callbackUrl') || '/';
   const [email, setEmail] = useState<string>('')
   const [pass, setPass] = useState<string>('')
 
