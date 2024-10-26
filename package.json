@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npx prisma generate && next build",
     "start": "next start",
     "lint": "eslint './src/**/*.{js,ts,tsx,json}'",
     "format": "prettier --write './src/**/*.{js,ts,tsx,json}'"
