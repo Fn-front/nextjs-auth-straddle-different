@@ -6,15 +6,16 @@ import { getToken } from 'next-auth/jwt';
 export async function middleware(req: any) {
   const { pathname } = req.nextUrl;
 
+  console.log(pathname);
+  // console.log(!!pathname.match('/user/api/'));
+
   // ログイン関係ではリダイレクトを行わないようにする
   if (
     pathname === '/admin/login' ||
-    pathname === '/admin/api/auth/' ||
-    pathname === '/admin/api/auth/callback/credentials' ||
-    pathname === '/admin/api/auth/providers' ||
-    pathname === '/admin/api/auth/csrf' ||
-    pathname === '/api/auth/_log' ||
-    pathname === '/admin/api/auth/session'
+    !!pathname.match('/admin/api/') ||
+    pathname === '/user/login' ||
+    !!pathname.match('/user/api/') ||
+    pathname === '/api/auth/_log'
   ) {
     return NextResponse.next();
   }
@@ -30,6 +31,18 @@ export async function middleware(req: any) {
     // tokenが無い場合にリダイレクト
     if (!token) {
       return NextResponse.redirect(new URL('/admin/login', req.url));
+    }
+  } else if (pathname.startsWith('/user')) {
+    // '/user'以下のページにアクセスする際、認証トークンがなければカスタムログインページにリダイレクト
+    const token = await getToken({
+      req,
+      secret: process.env.NEXTAUTH_SECRET_USER,
+      cookieName: 'user-session-token',
+    });
+
+    // tokenが無い場合にリダイレクト
+    if (!token) {
+      return NextResponse.redirect(new URL('/user/login', req.url));
     }
   }
 
