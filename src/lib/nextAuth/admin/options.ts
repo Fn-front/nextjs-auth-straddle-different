@@ -56,7 +56,8 @@ const options: NextAuthOptions = {
   },
   cookies: {
     sessionToken: {
-      name: 'admin-session-token', // ディレクトリ1用のクッキー名
+      // adminディレクトリのクッキー名
+      name: 'admin-session-token',
       options: {
         httpOnly: true,
         sameSite: 'lax',
